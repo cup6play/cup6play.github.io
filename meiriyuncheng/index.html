@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="每日运程 - 提供精准的星座运势、生肖运势及塔罗牌占卜指引。每日更新，助您把握今日运势，规避风险，抓住机遇，开启美好一天。">
+    <meta name="keywords" content="每日运程,星座运势,生肖运势,塔罗牌,每日运势查询">
+    <title>每日运程-精准星座生肖与塔罗指引平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .date-display {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: #eef2ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            background: var(--card-bg);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: #eef2ff;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .rating {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating span {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .运势概览 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            background: #f8fafc;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .stat-value.good { color: #10b981; }
+        .stat-value.avg { color: #f59e0b; }
+        .stat-value.bad { color: #ef4444; }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1rem;
+        }
+
+        .card-link {
+            display: block;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .card-link:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Insight Section */
+        .insight-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .insight-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .insight-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .insight-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .insight-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .insight-visual {
+            background: linear-gradient(to right, #e0e7ff, #fae8ff);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .tips-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .insight-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span>✨</span> 每日运程
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">今日运势</a></li>
+                    <li><a href="#">星座分析</a></li>
+                    <li><a href="#">生肖运程</a></li>
+                    <li><a href="#">塔罗指引</a></li>
+                </ul>
+            </nav>
+            <div class="date-display" id="currentDate">
+                <!-- JS will populate date -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>把握今日机遇，洞察未来走向</h1>
+            <p>基于星象与传统文化智慧的每日运势分析，为您提供工作、财运、感情及健康的全方位指引。</p>
+        </section>
+
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterCards('all')">全部运势</button>
+            <button class="tab-btn" onclick="filterCards('zodiac')">十二星座</button>
+            <button class="tab-btn" onclick="filterCards('zodiac')">十二生肖</button>
+            <button class="tab-btn" onclick="filterCards('tarot')">塔罗指引</button>
+        </div>
+
+        <div class="grid-container" id="运势卡片容器">
+            
+            <!-- Card 1: Aries -->
+            <article class="card" data-category="zodiac">
+                <div class="card-header">
+                    <h3 class="card-title">白羊座</h3>
+                    <div class="card-icon" style="background: #fee2e2; color: #ef4444;">♈</div>
+                </div>
+                <div class="rating">
+                    ★★★★☆ <span>(综合指数 85)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">事业</span>
+                        <span class="stat-value good">上升</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">财运</span>
+                        <span class="stat-value avg">平稳</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">爱情</span>
+                        <span class="stat-value good">顺遂</span>
+                    </div>
+                </div>
+                <p class="card-desc">今日精力充沛，适合处理积压的工作任务。在人际关系中可能遇到意想不到的助力，保持开放心态。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">查看详细分析</a>
+                </div>
+            </article>
+
+            <!-- Card 2: Taurus -->
+            <article class="card" data-category="zodiac">
+                <div class="card-header">
+                    <h3 class="card-title">金牛座</h3>
+                    <div class="card-icon" style="background: #fef3c7; color: #f59e0b;">♉</div>
+                </div>
+                <div class="rating">
+                    ★★★★☆ <span>(综合指数 82)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">事业</span>
+                        <span class="stat-value avg">一般</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">财运</span>
+                        <span class="stat-value good">旺</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">爱情</span>
+                        <span class="stat-value avg">平淡</span>
+                    </div>
+                </div>
+                <p class="card-desc">财运方面有意外的小惊喜，可能是小额投资回报或收到礼物。注意控制冲动消费，避免不必要的支出。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">查看详细分析</a>
+                </div>
+            </article>
+
+            <!-- Card 3: Gemini -->
+            <article class="card" data-category="zodiac">
+                <div class="card-header">
+                    <h3 class="card-title">双子座</h3>
+                    <div class="card-icon" style="background: #e0f2fe; color: #0ea5e9;">♊</div>
+                </div>
+                <div class="rating">
+                    ★★★☆☆ <span>(综合指数 70)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">事业</span>
+                        <span class="stat-value bad">波动</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">财运</span>
+                        <span class="stat-value avg">平稳</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">爱情</span>
+                        <span class="stat-value bad">受阻</span>
+                    </div>
+                </div>
+                <p class="card-desc">思绪容易混乱，沟通时需注意措辞，避免引起误会。感情方面可能因为小事产生摩擦，建议多沟通。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">查看详细分析</a>
+                </div>
+            </article>
+
+            <!-- Card 4: Tarot -->
+            <article class="card" data-category="tarot">
+                <div class="card-header">
+                    <h3 class="card-title">今日塔罗：命运之轮</h3>
+                    <div class="card-icon" style="background: #fce7f3; color: #ec4899;">🃏</div>
+                </div>
+                <div class="rating">
+                    ★★★★★ <span>(指引指数 90)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">能量</span>
+                        <span class="stat-value good">正向</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">建议</span>
+                        <span class="stat-value good">顺其自然</span>
+                    </div>
+                </div>
+                <p class="card-desc">命运之轮转动，好事即将发生。这是一个转折点，顺应时势，你会发现新的机会正在向你招手。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">解读今日运势</a>
+                </div>
+            </article>
+
+             <!-- Card 5: Dragon (Zodiac) -->
+             <article class="card" data-category="zodiac">
+                <div class="card-header">
+                    <h3 class="card-title">生肖：龙</h3>
+                    <div class="card-icon" style="background: #f3e8ff; color: #a855f7;">🐉</div>
+                </div>
+                <div class="rating">
+                    ★★★★★ <span>(综合指数 92)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">事业</span>
+                        <span class="stat-value good">大吉</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">财运</span>
+                        <span class="stat-value good">旺</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">健康</span>
+                        <span class="stat-value avg">注意</span>
+                    </div>
+                </div>
+                <p class="card-desc">今日气场强大，适合开展新项目或谈判。但要注意劳逸结合，避免过度劳累导致身体不适。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">查看详细分析</a>
+                </div>
+            </article>
+
+             <!-- Card 6: Snake (Zodiac) -->
+             <article class="card" data-category="zodiac">
+                <div class="card-header">
+                    <h3 class="card-title">生肖：蛇</h3>
+                    <div class="card-icon" style="background: #dcfce7; color: #22c55e;">🐍</div>
+                </div>
+                <div class="rating">
+                    ★★★☆☆ <span>(综合指数 75)</span>
+                </div>
+                <div class="运势概览">
+                    <div class="stat-item">
+                        <span class="stat-label">事业</span>
+                        <span class="stat-value avg">平稳</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">财运</span>
+                        <span class="stat-value avg">平稳</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">健康</span>
+                        <span class="stat-value good">佳</span>
+                    </div>
+                </div>
+                <p class="card-desc">今日宜静不宜动，适合复盘和规划。财运平稳，不宜进行高风险投资。身体健康状况良好。</p>
+                <div class="card-footer">
+                    <a href="#" class="card-link">查看详细分析</a>
+                </div>
+            </article>
+
+        </div>
+
+        <section class="insight-section">
+            <div class="insight-header">
+                <h2>🔮 运势小贴士</h2>
+            </div>
+            <div class="insight-content">
+                <div class="insight-text">
+                    <p>每日运程并非宿命，而是一种心理暗示与能量指引。通过了解当天的吉凶方位、幸运色及宜忌事项，您可以更有针对性地规划日程，趋吉避凶。</p>
+                    <p><strong>今日建议：</strong> 如果运势显示不佳，请保持乐观心态，积极行动往往能化解不利因素。如果运势大吉，也请保持谦逊，避免因小失大。</p>
+                </div>
+                <div class="insight-visual">
+                    <h4 style="margin-bottom:1rem; color:var(--primary-dark);">今日行动指南</h4>
+                    <ul class="tips-list">
+                        <li>宜：沟通、合作、整理内务</li>
+                        <li>忌：独断专行、冲动消费、争执</li>
+                        <li>幸运色：蓝色、紫色</li>
+                        <li>幸运数字：3, 6, 9</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>关于每日运程</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6;">
+                    我们致力于提供最准确、最及时的运势资讯。结合西方星座学与东方生肖文化，为您打造全方位的生活指引平台。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h3>运势分类</h3>
+                <ul>
+                    <li><a href="#">十二星座运势</a></li>
+                    <li><a href="#">十二生肖运程</a></li>
+                    <li><a href="#">每日塔罗占卜</a></li>
+                    <li><a href="#">黄道吉日查询</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>温馨提示</h3>
+                <ul>
+                    <li><a href="#">免责声明</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">合作推广</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 每日运程平台 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 设置当前日期
+        function setCurrentDate() {
+            const dateElement = document.getElementById('currentDate');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            dateElement.textContent = now.toLocaleDateString('zh-CN', options);
+        }
+
+        // 2. 运行日期设置
+        setCurrentDate();
+
+        // 3. 简单的卡片过滤功能
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            // 更新按钮状态
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 筛选卡片
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                    // 简单的淡入效果
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
