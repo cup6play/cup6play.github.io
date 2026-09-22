@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="铜锣湾广场官方网站，提供购物中心最新动态、品牌入驻信息、会员活动、交通指南及停车服务。了解一站式购物休闲体验。">
+    <meta name="keywords" content="铜锣湾广场,购物中心,品牌入驻,商场活动,交通指南">
+    <title>铜锣湾广场-一站式时尚购物中心与休闲生活指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --primary-hover: #b71c1c;
+            --secondary-color: #212121;
+            --accent-color: #f5f5f5;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: var(--secondary-color);
+            color: #ccc;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .header-main .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-icon {
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background-image: url('https://picsum.photos/seed/mall_hero/1600/900.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Brands Grid */
+        .brands {
+            padding: 60px 0;
+            background-color: var(--accent-color);
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .brand-item {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+
+        .brand-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .brand-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: var(--radius);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Current Events */
+        .events {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .event-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 25px;
+        }
+
+        .event-date {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .event-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .event-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Map & Info */
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .info-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .info-text p {
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+
+        .info-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-list i {
+            color: var(--primary-color);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #444;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #999;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-top {
+                display: none;
+            }
+            
+            .header-main .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <span>营业时间：10:00 - 22:00</span>
+                <span>会员热线：400-888-1234</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="#" class="logo">
+                    铜锣湾<span>广场</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">品牌大全</a></li>
+                        <li><a href="#">商场活动</a></li>
+                        <li><a href="#">餐饮美食</a></li>
+                        <li><a href="#">会员中心</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-icon" title="搜索">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <a href="#" class="btn btn-primary">会员登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>汇聚全球时尚，悦享都市生活</h1>
+                    <p>铜锣湾广场，城市核心地标。这里汇聚了国际一线品牌、潮流服饰、精致餐饮与亲子娱乐，为您打造一站式的都市休闲体验。</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" class="btn btn-primary">立即探索</a>
+                        <a href="#" class="btn btn-outline">查看楼层导览</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section class="brands">
+            <div class="container">
+                <div class="section-title">
+                    <h2>热门品牌入驻</h2>
+                    <p>Discover More</p>
+                </div>
+                <div class="brands-grid">
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/fashion1/150/100" alt="品牌Logo">
+                        <span>CHANEL</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/fashion2/150/100" alt="品牌Logo">
+                        <span>Dior</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/fashion3/150/100" alt="品牌Logo">
+                        <span>Prada</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/food1/150/100" alt="品牌Logo">
+                        <span>星巴克</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/tech1/150/100" alt="品牌Logo">
+                        <span>Apple</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/movie1/150/100" alt="品牌Logo">
+                        <span>万达影城</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/kids1/150/100" alt="品牌Logo">
+                        <span>乐高中心</span>
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://picsum.photos/seed/sport1/150/100" alt="品牌Logo">
+                        <span>Lululemon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>为什么选择铜锣湾广场</h2>
+                    <p>为您提供极致的购物体验与服务</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">🚗</div>
+                        <h3>便捷交通</h3>
+                        <p>毗邻城市地铁枢纽，提供充足地下停车场，停车免费2小时，出行无忧。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🎁</div>
+                        <h3>会员特权</h3>
+                        <p>注册会员即享积分累积、生日礼遇及专属折扣，积分可兑换指定商品。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">👶</div>
+                        <h3>亲子友好</h3>
+                        <p>设有专属母婴室及儿童游乐区，为家庭购物提供贴心便利设施。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events">
+            <div class="container">
+                <div class="section-title">
+                    <h2>近期精彩活动</h2>
+                    <p>Stay Tuned</p>
+                </div>
+                <div class="event-grid">
+                    <article class="event-card">
+                        <img src="https://picsum.photos/seed/event1/600/400" alt="夏季促销活动" class="event-img">
+                        <div class="event-content">
+                            <span class="event-date">2023年10月1日 - 10月7日</span>
+                            <h3>国庆黄金周·品牌狂欢节</h3>
+                            <p>全场品牌满额即送精美礼品，更有神秘大奖等你来抽，不容错过的购物盛宴。</p>
+                            <a href="#" style="color: var(--primary-color); font-weight: 500;">查看详情 &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <img src="https://picsum.photos/seed/event2/600/400" alt="美食节" class="event-img">
+                        <div class="event-content">
+                            <span class="event-date">2023年10月15日 - 10月20日</span>
+                            <h3>国际美食节</h3>
+                            <p>汇聚全球地道风味，日韩料理、意式披萨、东南亚小吃轮番登场，味蕾大爆发。</p>
+                            <a href="#" style="color: var(--primary-color); font-weight: 500;">查看详情 &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info & Map Section -->
+        <section class="info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-text">
+                        <h3>联系我们</h3>
+                        <p>铜锣湾广场致力于为每一位顾客提供高品质的购物环境与服务。如有任何疑问或建议，欢迎随时联系我们。</p>
+                        <ul class="info-list">
+                            <li>
+                                <i>📍</i>
+                                <span>地址：城市中心区建设大道888号</span>
+                            </li>
+                            <li>
+                                <i>📞</i>
+                                <span>客服电话：021-12345678</span>
+                            </li>
+                            <li>
+                                <i>✉️</i>
+                                <span>商务合作：business@cangluowang.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <img src="https://picsum.photos/seed/map/800/600" alt="铜锣湾广场位置地图">
+                            <div style="position: absolute; background: rgba(0,0,0,0.7); padding: 10px 20px; border-radius: 4px;">
+                                <strong>📍 铜锣湾广场位置示意图</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于广场</h4>
+                    <p>铜锣湾广场是集购物、餐饮、娱乐、休闲于一体的现代化大型购物中心，引领城市消费潮流。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">品牌招商</a></li>
+                        <li><a href="#">会员中心</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">网站地图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">抖音账号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 铜锣湾广场 版权所有 | 沪ICP备12345678号-1</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
